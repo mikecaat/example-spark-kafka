@@ -16,10 +16,11 @@
 
 package org.mkuthan.spark
 
-import kafka.serializer.DefaultDecoder
 import org.apache.spark.streaming.StreamingContext
 import org.apache.spark.streaming.dstream.DStream
-import org.apache.spark.streaming.kafka.KafkaUtils
+import org.apache.spark.streaming.kafka010._
+import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
+import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
 
 class KafkaDStreamSource(config: Map[String, String]) {
 
@@ -28,11 +29,11 @@ class KafkaDStreamSource(config: Map[String, String]) {
     val kafkaTopics = Set(topic)
 
     KafkaUtils.
-      createDirectStream[Array[Byte], Array[Byte], DefaultDecoder, DefaultDecoder](
+      createDirectStream[Array[Byte], Array[Byte]](
       ssc,
-      kafkaParams,
-      kafkaTopics).
-      map(dstream => KafkaPayload(Option(dstream._1), dstream._2))
+      PreferConsistent,
+      Subscribe[Array[Byte], Array[Byte]](kafkaTopics, kafkaParams)).
+      map(dstream => KafkaPayload(Option(dstream.key), dstream.value))
   }
 
 }

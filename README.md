@@ -14,13 +14,13 @@ The example follows Spark convention for integration with external data sinks:
 
 ## Features
 
-* [KafkaDStreamSink](src/main/scala/org/mkuthan/spark/KafkaDStreamSink.scala) for sending streaming results to Apache Kafka in reliable way.
+* [KafkaDStreamSink](src/main/scala-2.12/org/mkuthan/spark/KafkaDStreamSink.scala) for sending streaming results to Apache Kafka in reliable way.
 * Stream processing fail fast, if the results could not be sent to Apache Kafka.
 * Stream processing is blocked (back pressure), if the Kafka producer is too slow.
 * Stream processing results are flushed explicitly from Kafka producer internal buffer.
-* Kafka producer is shared by all tasks on single JVM (see [KafkaProducerFactory](src/main/scala/org/mkuthan/spark/KafkaProducerFactory.scala)).
-* Kafka producer is properly closed when Spark executor is shutdown (see [KafkaProducerFactory](src/main/scala/org/mkuthan/spark/KafkaProducerFactory.scala)).
-* [Twitter Bijection](https://github.com/twitter/bijection) is used for encoding/decoding [KafkaPayload](src/main/scala/org/mkuthan/spark/KafkaPayload.scala) from/into String or Avro.
+* Kafka producer is shared by all tasks on single JVM (see [KafkaProducerFactory](src/main/scala-2.12/org/mkuthan/spark/KafkaProducerFactory.scala)).
+* Kafka producer is properly closed when Spark executor is shutdown (see [KafkaProducerFactory](src/main/scala-2.12/org/mkuthan/spark/KafkaProducerFactory.scala)).
+* [Twitter Bijection](https://github.com/twitter/bijection) is used for encoding/decoding [KafkaPayload](src/main/scala-2.12/org/mkuthan/spark/KafkaPayload.scala) from/into String or Avro.
 
 ## Quickstart guide
 

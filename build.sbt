@@ -14,14 +14,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-lazy val kafkaVersion = "0.8.2.1"
-lazy val sparkVersion = "1.6.0"
+lazy val redisVersion = "2.4.2"
+lazy val kafkaVersion = "2.6.0"
+lazy val sparkVersion = "3.0.1"
 
 lazy val commonSettings = Seq(
   name := "example-spark-kafka",
   version := "1.0",
   organization := "http://mkuthan.github.io/",
-  scalaVersion := "2.11.7"
+  scalaVersion := "2.12.12"
 )
 
 lazy val customScalacOptions = Seq(
@@ -44,17 +45,17 @@ lazy val customLibraryDependencies = Seq(
 
   "org.apache.spark" %% "spark-core" % sparkVersion,
   "org.apache.spark" %% "spark-streaming" % sparkVersion,
-  "org.apache.spark" %% "spark-streaming-kafka" % sparkVersion,
+  "org.apache.spark" %% "spark-streaming-kafka-0-10" % sparkVersion,
 
-  "com.twitter" %% "bijection-avro" % "0.8.1",
-  "com.twitter" %% "chill-avro" % "0.7.2",
+  "com.twitter" %% "bijection-avro" % "0.9.7",
+  "com.twitter" %% "chill-avro" % "0.9.5",
 
-  "com.typesafe" % "config" % "1.2.1",
-  "net.ceedubs" %% "ficus" % "1.1.1",
+  "com.typesafe" % "config" % "1.3.4",
+  "com.iheart" %% "ficus" % "1.5.0",
 
-  "ch.qos.logback" % "logback-classic" % "0.9.24",
+  "ch.qos.logback" % "logback-classic" % "1.2.3",
 
-  "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+  "org.scalatest" %% "scalatest" % "3.2.2" % "test"
 )
 
 lazy val commonExcludeDependencies = Seq(
